@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="4" total="5" passed="1" failed="0" skipped="0">
+<testng-results ignored="1" total="2" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-02-22T14:06:01 IST" name="Default suite" finished-at="2024-02-22T14:06:35 IST" duration-ms="33466">
+  <suite started-at="2024-02-26T15:07:21 IST" name="Default suite" finished-at="2024-02-26T15:07:37 IST" duration-ms="15794">
     <groups>
     </groups>
-    <test started-at="2024-02-22T14:06:01 IST" name="Default test" finished-at="2024-02-22T14:06:35 IST" duration-ms="33466">
-      <class name="com.automationexercise.test.VerifyPrDisplayedInCartWithExactQuantity">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.automationexercise.test.VerifyPrDisplayedInCartWithExactQuantity@1de5f259]" started-at="2024-02-22T14:06:01 IST" name="setUp" finished-at="2024-02-22T14:06:18 IST" duration-ms="16262" status="PASS">
+    <test started-at="2024-02-26T15:07:21 IST" name="Default test" finished-at="2024-02-26T15:07:37 IST" duration-ms="15794">
+      <class name="com.automationexercise.test.LoginTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.automationexercise.test.LoginTest@316bcf94]" started-at="2024-02-26T15:07:21 IST" name="setUp" finished-at="2024-02-26T15:07:35 IST" duration-ms="14351" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="PlaceOrderRegWhileCheckout()[pri:0, instance:com.automationexercise.test.VerifyPrDisplayedInCartWithExactQuantity@1de5f259]" started-at="2024-02-22T14:06:18 IST" name="PlaceOrderRegWhileCheckout" finished-at="2024-02-22T14:06:35 IST" duration-ms="16947" status="PASS">
+        <test-method signature="IvLogin()[pri:0, instance:com.automationexercise.test.LoginTest@316bcf94]" started-at="2024-02-26T15:07:35 IST" name="IvLogin" finished-at="2024-02-26T15:07:36 IST" duration-ms="1131" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- PlaceOrderRegWhileCheckout -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.automationexercise.test.VerifyPrDisplayedInCartWithExactQuantity@1de5f259]" started-at="2024-02-22T14:06:35 IST" name="tearDown" finished-at="2024-02-22T14:06:35 IST" duration-ms="237" status="PASS">
+        </test-method> <!-- IvLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.automationexercise.test.LoginTest@316bcf94]" started-at="2024-02-26T15:07:36 IST" name="tearDown" finished-at="2024-02-26T15:07:37 IST" duration-ms="284" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.automationexercise.test.VerifyPrDisplayedInCartWithExactQuantity -->
+      </class> <!-- com.automationexercise.test.LoginTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

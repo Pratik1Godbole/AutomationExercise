@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import com.automationexercise.Base.BaseClass;
@@ -22,34 +24,171 @@ public class CartPage extends BaseClass {
 	SignUpPage signUP;
 	SignInPage signIn;
 
+	public CartPage() {
+		PageFactory.initElements(driver, this);
+	}
 
 
-
-
+	@FindBy(xpath = "//a[@href='/product_details/1']")
 	private WebElement viewProduct;
+
+	@FindBy(xpath ="//tbody//td[6]//a")
 	private WebElement  removeproduct;
+
+
+
+	@FindBy(id ="quantity")
+	private WebElement quantity;
+
+	@FindBy(xpath ="//button[@type='button']")
+	private	WebElement ATCBtn;
+	@FindBy(xpath ="//p[@class='text-center']//a")
+	private WebElement viewCart;
+
+	@FindBy(xpath = "//tr[@id='product-1']//td//button")
+	private WebElement quan;
+
+	@FindBy(xpath = "//p[@class='text-center']//following::a[@href='/login']")
+	private WebElement RegOrLogin;
+
+	@FindBy(xpath = "//section[@id='do_action']//following::div[@class='col-sm-6']//a")
+	private WebElement checkout;
+
+	@FindBy(xpath = "//ul[@id='address_delivery']//li[2]")
+	private WebElement DelName;
+
+	@FindBy(xpath = "//ul[@id='address_delivery']//li[3]")
+	private WebElement Delcomp;
+
+	@FindBy(xpath = "//ul[@id='address_delivery']//li[4]")
+	private WebElement Deladd1;
+
+	@FindBy(xpath = "//ul[@id='address_delivery']//li[5]")
+	private WebElement Deladd2;
+
+	@FindBy(xpath = "//ul[@id='address_delivery']//li[6]")
+	private WebElement DelcityStatePostCode;
+
+	@FindBy(xpath = "//ul[@id='address_delivery']//li[7]")
+	private WebElement Delcountry;
+
+	@FindBy(xpath = "//ul[@id='address_delivery']//li[8]")
+	private WebElement Delmob;
+
+	@FindBy(xpath = "//ul[@id='address_invoice']//li[2]")
+	private WebElement BilName;
+
+	@FindBy(xpath = "//ul[@id='address_invoice']//li[3]")
+	private WebElement Bilcomp;
+
+	@FindBy(xpath = "//ul[@id='address_invoice']//li[4]")
+	private WebElement Biladd1;
+
+	@FindBy(xpath = "//ul[@id='address_invoice']//li[5]")
+	private WebElement Biladd2;
+
+	@FindBy(xpath = "//ul[@id='address_invoice']//li[6]")
+	private WebElement BilcityStatePostCode;
+
+	@FindBy(xpath = "//ul[@id='address_invoice']//li[7]")
+	private WebElement Bilcountry;
+
+	@FindBy(xpath = "//ul[@id='address_invoice']//li[8]")
+	private WebElement Bilmob;
+
+	@FindBy(xpath = "//a[@href=\"/product_details/1\"]")
+	private WebElement blueT;
+
+	@FindBy(xpath = "//*[@id=\"product-1\"]/td[2]/p")
+	private WebElement bluecat;
+
+	@FindBy(xpath = "//*[@id=\"product-1\"]/td[3]/p")
+	private WebElement bluePrice;
+
+	@FindBy(xpath = "//*[@id=\"product-1\"]/td[4]/button")
+	private WebElement bluequantity;
+
+	@FindBy(xpath = "//a[@href='/product_details/2']")
+	private WebElement tshirtT;
+
+	@FindBy(xpath = "//*[@id='product-2']/td[2]/p")
+	private WebElement tshirtcat;
+
+	@FindBy(xpath = "//*[@id='product-2']/td[3]/p")
+	private WebElement tshirtPrice;
+
+	@FindBy(xpath = "//*[@id='product-2']/td[4]/button")
+	private WebElement tshirtquantity;
+
+	@FindBy(xpath = "//textarea[@name='message']")
+	private WebElement msgtext;
+
+	@FindBy(xpath = "//a[@href='/payment']")
+	private WebElement placeOrder;
+
+	@FindBy(xpath = "//*[@id='empty_cart']/p/b")
+	private WebElement cartemptymsg;
+
+	@FindBy(xpath = "//tr[@id=\\\"product-1\\\"]//td[5]//p")
+	private WebElement totalblue ;
+
+
+	@FindBy(xpath = "//tr[@id='product-2']//td[5]//p")
+	private WebElement totaltext;
+
+	@FindBy (xpath = "//tbody//tr[3]//td//p")
+	WebElement TotalAmount;
+
+
+
+
+
+	public WebElement getBlueT() {
+		return blueT;
+	}
+
+	public WebElement getBluePrice() {
+		return bluePrice;
+	}
+
+	public WebElement getBluequantity() {
+		return bluequantity;
+	}
+
+
+
+	public double calculateTotal() {
+		double price = Double.parseDouble(getBluePrice().getText().replaceAll("^\\D+", ""));
+		double quantity = Double.parseDouble(getBluequantity().getText().trim());
+		return price * quantity;
+	}
+
+	public WebElement findTotalElement() {
+		return driver.findElement(By.xpath("//tr[@id=\"product-1\"]//td[5]//p"));
+	}
+
 
 	public void VerifyPqInCart() {
 		pp = new ProductPage();
 		pp.productsBtn();
 		utils.scrollBy(driver);
-		viewProduct = utils.waitForElementPresent(driver, By.xpath("//a[@href='/product_details/1']"), Duration.ofSeconds(5));
+		utils.waitForElementPresent(driver,viewProduct , Duration.ofSeconds(5));
 		viewProduct.click();
 		Assert.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/product_details/1");
 
-		WebElement quantity = driver.findElement(By.id("quantity"));
+
 		quantity.clear();
 		quantity.sendKeys("4");
 
-		WebElement ATCBtn = driver.findElement(By.xpath("//button[@type='button']"));
+
 		ATCBtn.click();
 
-		WebElement viewCart = driver.findElement(By.xpath("//p[@class='text-center']//a"));
+
 		viewCart.click();
-		viewProduct = utils.waitForElementPresent(driver, By.xpath("//a[@href='/product_details/1']"), Duration.ofSeconds(5));
+		utils.waitForElementPresent(driver, viewProduct, Duration.ofSeconds(5));
 		Assert.assertEquals(viewProduct.getText(), con.productName);
 
-		WebElement quan = driver.findElement(By.xpath("//tr[@id='product-1']//td//button"));
+
 		Assert.assertEquals(quan.getText(), "4");
 	}
 
@@ -58,7 +197,7 @@ public class CartPage extends BaseClass {
 		pp = new ProductPage();
 		pp.AddProductInCart();
 		ClickOnCheckOut();
-		WebElement RegOrLogin = driver.findElement(By.xpath("//p[@class='text-center']//following::a[@href='/login']"));
+
 		RegOrLogin.click();
 		signUP = new SignUpPage();
 		signUP.signUp();
@@ -86,7 +225,7 @@ public class CartPage extends BaseClass {
 
 
 	public void ClickOnCheckOut() {
-		WebElement checkout = driver.findElement(By.xpath("//section[@id='do_action']//following::div[@class='col-sm-6']//a"));
+
 		checkout.click();
 
 	}
@@ -95,81 +234,47 @@ public class CartPage extends BaseClass {
 		VerifyDeliveryAdd();
 		VerifyBillingAdd();
 		ReviewProducts();
-		
+
 
 	}
-	
-	public void VerifyDeliveryAdd() {
-		WebElement Name = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[2]"));
-		Assert.assertEquals(Name.getText(), con.firstNameLastName);
-		WebElement comp = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[3]"));
-		//		System.out.println(comp.getText());
-		Assert.assertEquals(comp.getText(), con.company);
-		WebElement add1 = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[4]"));
-		Assert.assertEquals(add1.getText(), con.add1);
-		WebElement add2 = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[5]"));
-		Assert.assertEquals(add2.getText(), con.add2);
-		WebElement cityStatePostCode = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[6]"));
-		//		System.out.println(cityStatePostCode.getText());
-		Assert.assertEquals(cityStatePostCode.getText(), con.cityStatePostcode);
 
-		WebElement country = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[7]"));
-		Assert.assertEquals(country.getText(), con.country);
-		WebElement mob = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[8]"));
-		Assert.assertEquals(mob.getText(), con.mob);
+	public void VerifyDeliveryAdd() {
+
+		Assert.assertEquals(DelName.getText(), con.firstNameLastName);
+		Assert.assertEquals(Delcomp.getText(), con.company);
+		Assert.assertEquals(Deladd1.getText(), con.add1);
+		Assert.assertEquals(Deladd2.getText(), con.add2);
+		Assert.assertEquals(DelcityStatePostCode.getText(), con.cityStatePostcode);
+		Assert.assertEquals(Delcountry.getText(), con.country);
+		Assert.assertEquals(Delmob.getText(), con.mob);
 		System.out.println("The delivery address is same address filled at the time registration of account");
 	}
-	
-	public void VerifyBillingAdd() {
-		WebElement Name = driver.findElement(By.xpath("//ul[@id='address_invoice']//li[2]"));
-		Assert.assertEquals(Name.getText(), con.firstNameLastName);
-		WebElement comp = driver.findElement(By.xpath("//ul[@id='address_invoice']//li[3]"));
-		//		System.out.println(comp.getText());
-		Assert.assertEquals(comp.getText(), con.company);
-		WebElement add1 = driver.findElement(By.xpath("//ul[@id='address_invoice']//li[4]"));
-		Assert.assertEquals(add1.getText(), con.add1);
-		WebElement add2 = driver.findElement(By.xpath("//ul[@id='address_invoice']//li[5]"));
-		Assert.assertEquals(add2.getText(), con.add2);
-		WebElement cityStatePostCode = driver.findElement(By.xpath("//ul[@id='address_invoice']//li[6]"));
-		//		System.out.println(cityStatePostCode.getText());
-		Assert.assertEquals(cityStatePostCode.getText(), con.cityStatePostcode);
 
-		WebElement country = driver.findElement(By.xpath("//ul[@id='address_invoice']//li[7]"));
-		Assert.assertEquals(country.getText(), con.country);
-		WebElement mob = driver.findElement(By.xpath("//ul[@id='address_invoice']//li[8]"));
-		Assert.assertEquals(mob.getText(), con.mob);
+	public void VerifyBillingAdd() {
+		Assert.assertEquals(BilName.getText(), con.firstNameLastName);
+		Assert.assertEquals(Bilcomp.getText(), con.company);
+		Assert.assertEquals(Biladd1.getText(), con.add1);
+		Assert.assertEquals(Biladd2.getText(), con.add2);
+		Assert.assertEquals(BilcityStatePostCode.getText(), con.cityStatePostcode);
+		Assert.assertEquals(Bilcountry.getText(), con.country);
+		Assert.assertEquals(Bilmob.getText(), con.mob);
 		System.out.println("The billing address is same address filled at the time registration of account");
 	}
-	
+
 	public void ReviewProducts() {
-		WebElement Name = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[2]"));
-		Assert.assertEquals(Name.getText(), con.firstNameLastName);
-		WebElement comp = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[3]"));
-		//		System.out.println(comp.getText());
-		Assert.assertEquals(comp.getText(), con.company);
-		WebElement add1 = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[4]"));
-		Assert.assertEquals(add1.getText(), con.add1);
-		WebElement add2 = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[5]"));
-		Assert.assertEquals(add2.getText(), con.add2);
-		WebElement cityStatePostCode = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[6]"));
-		//		System.out.println(cityStatePostCode.getText());
-		Assert.assertEquals(cityStatePostCode.getText(), con.cityStatePostcode);
-
-		WebElement country = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[7]"));
-		Assert.assertEquals(country.getText(), con.country);
-		WebElement mob = driver.findElement(By.xpath("//ul[@id='address_delivery']//li[8]"));
-		Assert.assertEquals(mob.getText(), con.mob);
-
+		Assert.assertEquals(DelName.getText(), con.firstNameLastName);
+		Assert.assertEquals(Delcomp.getText(), con.company);
+		Assert.assertEquals(Deladd1.getText(), con.add1);
+		Assert.assertEquals(Deladd2.getText(), con.add2);
+		Assert.assertEquals(DelcityStatePostCode.getText(), con.cityStatePostcode);
+		Assert.assertEquals(Delcountry.getText(), con.country);
+		Assert.assertEquals(Delmob.getText(), con.mob);
 		utils.scrollBy(driver);
 
-
-		WebElement blueT = driver.findElement(By.xpath("//a[@href=\"/product_details/1\"]"));
+		// product 1
 		Assert.assertEquals(blueT.getText(), con.productName);
-		WebElement bluecat = driver.findElement(By.xpath("//*[@id=\"product-1\"]/td[2]/p"));
 		Assert.assertEquals(bluecat.getText(), con.category);
-		WebElement bluePrice = driver.findElement(By.xpath("//*[@id=\"product-1\"]/td[3]/p"));
 		Assert.assertEquals(bluePrice.getText(),con.price);
-		WebElement bluequantity = driver.findElement(By.xpath("//*[@id=\"product-1\"]/td[4]/button"));
 		Assert.assertEquals(bluequantity.getText(), "1");
 
 
@@ -191,7 +296,6 @@ public class CartPage extends BaseClass {
 
 				// Find the total element carefully, handling potential exceptions
 				try {
-					WebElement totalblue = driver.findElement(By.xpath("//tr[@id=\"product-1\"]//td[5]//p"));
 					Assert.assertEquals(totalblue.getText(), con.price);
 
 					double blueTotal1 = Double.parseDouble(totalblue.getText().replaceAll("^\\D+", ""));
@@ -211,14 +315,9 @@ public class CartPage extends BaseClass {
 
 
 		//product 2
-
-		WebElement tshirtT = driver.findElement(By.xpath("//a[@href='/product_details/2']"));
 		Assert.assertEquals(tshirtT.getText(), con.productName2);
-		WebElement tshirtcat = driver.findElement(By.xpath("//*[@id='product-2']/td[2]/p"));
 		Assert.assertEquals(tshirtcat.getText(), con.category2);
-		WebElement tshirtPrice = driver.findElement(By.xpath("//*[@id='product-2']/td[3]/p"));
 		Assert.assertEquals(tshirtPrice.getText(),con.price2);
-		WebElement tshirtquantity = driver.findElement(By.xpath("//*[@id='product-2']/td[4]/button"));
 		Assert.assertEquals(tshirtquantity.getText(), "1");
 
 		try {
@@ -235,7 +334,7 @@ public class CartPage extends BaseClass {
 
 				// Find the total element carefully, handling potential exceptions
 				try {
-					WebElement totaltext = driver.findElement(By.xpath("//tr[@id='product-2']//td[5]//p"));
+
 					Assert.assertEquals(totaltext.getText(), con.price2);
 
 					double tshirtTotal1 = Double.parseDouble(totaltext.getText().replaceAll("^\\D+", ""));
@@ -253,7 +352,7 @@ public class CartPage extends BaseClass {
 			System.err.println("Error parsing price or quantity: " + e.getMessage());
 		}
 
-		WebElement TotalAmount = driver.findElement(By.xpath("//tbody//tr[3]//td//p"));
+
 		Assert.assertEquals(TotalAmount.getText(), "Rs. 900");
 	}
 
@@ -262,9 +361,9 @@ public class CartPage extends BaseClass {
 
 		//Enter description in comment text area and click 'Place Order'
 
-		WebElement msgtext =  driver.findElement(By.xpath("//textarea[@name='message']"));
+
 		msgtext.sendKeys(con.comment);
-		WebElement placeOrder = driver.findElement(By.xpath("//a[@href='/payment']"));
+
 		placeOrder.click();
 
 	}
@@ -288,14 +387,13 @@ public class CartPage extends BaseClass {
 		pp.AddProductInCart();
 		utils.addToCart(driver);
 		removeAllProducts();
-		WebElement cartemptymsg = driver.findElement(By.xpath("//*[@id='empty_cart']/p/b"));
+
 		System.out.println(cartemptymsg.getText());
 		Assert.assertEquals(cartemptymsg.getText(), "Cart is empty!");
 	}
 
 	private boolean isRemoveButtonDisplayed() {
 		try {
-			removeproduct = driver.findElement(By.xpath("//tbody//td[6]//a"));
 			return removeproduct.isDisplayed();
 		}
 		catch (org.openqa.selenium.NoSuchElementException e) {
@@ -306,21 +404,19 @@ public class CartPage extends BaseClass {
 	public void removeAllProducts() {
 		while (isRemoveButtonDisplayed()) {
 			try {
-			removeproduct = driver.findElement(By.xpath("//tbody//td[6]//a"));
-			removeproduct.click();
+				removeproduct.click();
 			}catch (NoSuchElementException e) {
-	            // Element might have disappeared, break out of the loop
-	            break;
-	        } catch (StaleElementReferenceException e) {
-	            // Element might have become stale, find it again
-	            continue;
-	        }
+				// Element might have disappeared, break out of the loop
+				break;
+			} catch (StaleElementReferenceException e) {
+				// Element might have become stale, find it again
+				continue;
+			}
 		}
 
 
 	}
 }
-
 
 
 

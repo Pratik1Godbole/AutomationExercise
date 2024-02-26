@@ -1,8 +1,12 @@
 package com.automationexercise.Pages;
 
 import java.io.File;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import com.automationexercise.Base.BaseClass;
 import com.automationexercise.utils.utils;
@@ -12,20 +16,33 @@ public class CheckOutPage extends BaseClass{
 	SignUpPage signup;
 	ProductPage prod;
 	CartPage cart;
+	
+	
+	public  CheckOutPage() {
+		 PageFactory.initElements(driver, this);
+	}
 
 
 
-	By proceedToCheckOutbtn = By.xpath("//a[@class='btn btn-default check_out']");
-	By ContinueToCart =By.xpath("//div[@id='checkoutModal']//button"); 
-	By downloadInvoice = By.xpath("//a[@class='btn btn-default check_out']");
-	By continueBtn = By.xpath("//a[@data-qa='continue-button']");
+	@FindBy(xpath = "//a[@class='btn btn-default check_out']")
+    private WebElement proceedToCheckOutbtn;
+
+    @FindBy(xpath = "//div[@id='checkoutModal']//button")
+    private WebElement ContinueToCart;
+
+    @FindBy(xpath = "//a[@class='btn btn-default check_out']")
+    private WebElement downloadInvoice;
+
+    @FindBy(xpath = "//a[@data-qa='continue-button']")
+    private WebElement continueBtn;
+
 
 	public void AddDetailsInCheckOutPage() {
 		signup = new SignUpPage();
 		signup.signUp();
 		prod = new ProductPage();
 		prod.AddProductInCart();
-		driver.findElement(proceedToCheckOutbtn).click();
+		proceedToCheckOutbtn.click();
 
 		cart = new CartPage();
 
@@ -46,7 +63,7 @@ public class CheckOutPage extends BaseClass{
 		cart.EnterCommentTextAndClickPlaceOrder();
 		utils.payment(driver);
 		driver.navigate().forward();
-		driver.findElement(downloadInvoice);
+
 
 		try {
 			Thread.sleep(2000); 
@@ -67,13 +84,9 @@ public class CheckOutPage extends BaseClass{
 			System.out.println("Invoice download failed.");
 		}
 
-		try {
-			Thread.sleep(2000); 
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
-		driver.findElement(continueBtn);
+		
 		signup.deleteAcc();
 	}
 

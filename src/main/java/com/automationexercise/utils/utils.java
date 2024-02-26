@@ -109,10 +109,11 @@ public class utils {
 	//        // This is just a basic example, you might want to use WebDriverWait with ExpectedConditions
 	//    }
 
-	public static WebElement waitForElementPresent(WebDriver driver, By locator, Duration timeoutInSeconds) {
-		WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
-		return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+	public static WebElement waitForElementPresent(WebDriver driver, WebElement element, Duration timeoutInSeconds) {
+	    WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+	    return wait.until(ExpectedConditions.visibilityOf(element));
 	}
+
 
 
 
