@@ -96,16 +96,16 @@ public class CartPage extends BaseClass {
 	@FindBy(xpath = "//ul[@id='address_invoice']//li[8]")
 	private WebElement Bilmob;
 
-	@FindBy(xpath = "//a[@href=\"/product_details/1\"]")
+	@FindBy(xpath = "//a[@href='/product_details/1']")
 	private WebElement blueT;
 
-	@FindBy(xpath = "//*[@id=\"product-1\"]/td[2]/p")
+	@FindBy(xpath = "//*[@id='product-1']/td[2]/p")
 	private WebElement bluecat;
 
-	@FindBy(xpath = "//*[@id=\"product-1\"]/td[3]/p")
+	@FindBy(xpath = "//*[@id='product-1']/td[3]/p")
 	private WebElement bluePrice;
 
-	@FindBy(xpath = "//*[@id=\"product-1\"]/td[4]/button")
+	@FindBy(xpath = "//*[@id='product-1']/td[4]/button")
 	private WebElement bluequantity;
 
 	@FindBy(xpath = "//a[@href='/product_details/2']")
@@ -129,7 +129,7 @@ public class CartPage extends BaseClass {
 	@FindBy(xpath = "//*[@id='empty_cart']/p/b")
 	private WebElement cartemptymsg;
 
-	@FindBy(xpath = "//tr[@id=\\\"product-1\\\"]//td[5]//p")
+	@FindBy(xpath = "//tr[@id='product-1']//td[5]//p")
 	private WebElement totalblue ;
 
 
@@ -370,7 +370,7 @@ public class CartPage extends BaseClass {
 
 	public void LoginBeforeCheckOut() {
 		signIn = new SignInPage();
-		signIn.loginWithValidUP("uName2", "pass");;
+		signIn.loginWithValidUP("uName2", "pass");
 		pp = new ProductPage();
 		pp.AddProductInCart();
 		utils.addToCart(driver);

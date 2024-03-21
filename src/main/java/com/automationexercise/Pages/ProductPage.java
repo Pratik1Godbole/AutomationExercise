@@ -1,4 +1,4 @@
-package com.automationexercise.Pages;
+	package com.automationexercise.Pages;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -27,25 +27,25 @@ public class ProductPage extends BaseClass{
 	SignInPage signIn;
 
 
-	@FindBy(xpath = "//a[@href=\"/product_details/1\"]")
+	@FindBy(xpath = "//a[@href='/product_details/1']")
 	private WebElement viewProduct;
 
-	@FindBy(xpath = "//div[@class=\"product-information\"]//h2")
+	@FindBy(xpath = "//div[@class='product-information']//h2")
 	private WebElement productName;
 
-	@FindBy(xpath = "//div[@class=\"product-information\"]//p[1]")
+	@FindBy(xpath = "//div[@class='product-information']//p[1]")
 	private WebElement category;
 
-	@FindBy(xpath = "//div[@class=\"product-information\"]//span/span")
+	@FindBy(xpath = "//div[@class='product-information']//span/span")
 	private WebElement price;
 
-	@FindBy(xpath = "//div[@class=\"product-information\"]//p[2]")
+	@FindBy(xpath = "//div[@class='product-information']//p[2]")
 	private WebElement availability;
 
-	@FindBy(xpath = "//div[@class=\"product-information\"]//p[3]")
+	@FindBy(xpath = "//div[@class='product-information']//p[3]")
 	private WebElement condition;
 
-	@FindBy(xpath = "//div[@class=\"product-information\"]//p[4]")
+	@FindBy(xpath = "//div[@class='product-information']//p[4]")
 	private WebElement brand;
 
 	@FindBy(id = "search_product")
@@ -60,10 +60,11 @@ public class ProductPage extends BaseClass{
 	@FindBy(xpath = "//div[@class='productinfo text-center']//p")
 	private List<WebElement> searchResultTitles;
 
-	@FindBy(xpath = "//div[@class=\"single-products\"]//preceding::img[@src=\"/get_product_picture/1\"]")
+	@FindBy(xpath = "//div[@class='single-products']//preceding::img[@src='/get_product_picture/1']")
 	private WebElement firstProduct;
 
-	@FindBy(xpath = "//div[@class=\"product-overlay\"]//a[@data-product-id='1']")
+//	@FindBy(xpath = "//div[@class='product-overlay']//a[@data-product-id='1']")
+	@FindBy(xpath = "//a[@data-product-id='1']")
 	private WebElement addToCartP1;
 
 	@FindBy(xpath = "//div[@class='modal-footer']//button")
@@ -72,7 +73,7 @@ public class ProductPage extends BaseClass{
 	@FindBy(xpath = "//div[@class='single-products']//preceding::img[@src='/get_product_picture/2']")
 	private WebElement secondProduct;
 
-	@FindBy(xpath = "//div[@class=\"product-overlay\"]//a[@data-product-id='2']")
+	@FindBy(xpath = "//a[@data-product-id='2']")
 	private WebElement addToCartP2;
 
 	@FindBy(xpath = "//a[@href='/product_details/1']")
@@ -106,7 +107,7 @@ public class ProductPage extends BaseClass{
 	private WebElement total2;
 
 
-	@FindBy(xpath ="//*[@id=\\\"header\\\"]/div/div/div/div[2]/div/ul/li[2]/a")
+	@FindBy(xpath ="//*[@id='header']/div/div/div/div[2]/div/ul/li[2]/a")
 	private WebElement productsBtn ;
 
 	@FindBy(id = "accordian")
@@ -131,10 +132,10 @@ public class ProductPage extends BaseClass{
 	@FindBy(xpath = "//a[@href='/category_products/3']")
 	private WebElement subMenCat;
 
-	@FindBy(xpath = "//div[@class=\"productinfo text-center\"]//a[@class='btn btn-default add-to-cart']")
+	@FindBy(xpath = "//div[@class='productinfo text-center']//a[@class='btn btn-default add-to-cart']")
 	private List<WebElement> addToCartButtons;
 
-	@FindBy(xpath = "//div[@id=\"cart_info\"]//tbody//td//h4//a")
+	@FindBy(xpath = "//div[@id='cart_info']//tbody//td//h4//a")
 	private List<WebElement> prodInCart;
 
 	@FindBy(xpath = "//*[text()='Brands']")

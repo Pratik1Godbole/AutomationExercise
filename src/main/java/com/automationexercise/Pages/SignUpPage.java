@@ -20,7 +20,7 @@ public class SignUpPage extends BaseClass {
 	@FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[4]/a")
 	private WebElement signup_loginbtn;
 	
-	@FindBy(xpath = "//*[@id=\\\"form\\\"]/div/div/div[3]/div/h2")
+	@FindBy(xpath = "//*[@id='form']/div/div/div[3]/div/h2")
 	private WebElement newUserSignUp;
 	
 	@FindBy(xpath = "//input[@data-qa='signup-name']")
@@ -29,10 +29,10 @@ public class SignUpPage extends BaseClass {
 	@FindBy(xpath = "//input[@data-qa='signup-email']")
 	private WebElement Email;
 	
-	@FindBy(xpath = "//div[@class=\\\"signup-form\\\"]//form//button")
+	@FindBy(xpath = "//div[@class='signup-form']//form//button")
 	private WebElement Signup;
 	
-	@FindBy(xpath = "//*[@id=\\\"form\\\"]/div/div/div/div/h2")
+	@FindBy(xpath = "//*[@id='form']/div/div/div/div/h2")
 	private WebElement enterAccInfo;
 	
 	@FindBy(id = "uniform-id_gender1")
@@ -86,24 +86,24 @@ public class SignUpPage extends BaseClass {
 	@FindBy(id = "mobile_number")
 	private WebElement mobNo;
 	
-	@FindBy(xpath = "//*[@id=\\\"form\\\"]/div/div/div/div/form/button")
+	@FindBy(xpath = "//*[@id='form']/div/div/div/div/form/button")
 	private WebElement createAcc;
 	
-	@FindBy(xpath = "//*[@id=\\\"form\\\"]/div/div/div/h2/b")
+	@FindBy(xpath = "//*[@id='form']/div/div/div/h2/b")
 	private WebElement accCreated;
 	
 	@FindBy(xpath = "//a[@data-qa='continue-button']")
 	private WebElement cont;
 	
-	@FindBy(xpath = "//*[@id=\\\"form\\\"]/div/div/div[3]/div/form/p")
+	@FindBy(xpath = "//*[@id='form']/div/div/div[3]/div/form/p")
 	private WebElement errMsg;
 
-	@FindBy(xpath = "//*[@id=\\\"header\\\"]/div/div/div/div[2]/div/ul/li[10]/a")
+	@FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[10]/a")
 	private WebElement loggedInAsUname;
-	@FindBy(xpath = "//*[@id=\\\"header\\\"]/div/div/div/div[2]/div/ul/li[5]/a")
+	@FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[5]/a")
 	private WebElement delAccbtn;
 	
-	@FindBy(xpath = "//*[@id=\\\"form\\\"]/div/div/div/h2/b")
+	@FindBy(xpath = "//*[@id='form']/div/div/div/h2/b")
 	private WebElement accDltd ;
 
 	public SignUpPage() {
@@ -206,7 +206,7 @@ public class SignUpPage extends BaseClass {
 	}
 	
 	public void deleteAcc() {
-		WebElement delAccbtn = driver.findElement(By.xpath(""));
+//		WebElement delAccbtn = driver.findElement(By.xpath(""));
 		delAccbtn.click();
 		Assert.assertEquals(accDltd.getText(), "ACCOUNT DELETED!");
 		System.out.println(" 'ACCOUNT DELETED!' is visible");	

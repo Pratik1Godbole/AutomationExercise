@@ -3,13 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.automationexercise.test.VerifyPrDisplayedInCartWithExactQuantity">
+      <class name="com.automationexercise.test.DownloadInvoiceAfterPurchase">
         <methods>
-          <include name="PlaceOrderRegWhileCheckout"/>
+          <include name="downloadInvoiceAfterPurchaseOrder"/>
           <include name="setUp"/>
-          <include name="tearDown"/>
         </methods>
-      </class> <!-- com.automationexercise.test.VerifyPrDisplayedInCartWithExactQuantity -->
+      </class> <!-- com.automationexercise.test.DownloadInvoiceAfterPurchase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -37,9 +37,15 @@ public class utils {
 
 
 
-	public static  WebElement waitForClickableElement(WebDriver driver, By locator, Duration timeoutInSeconds) {
+//	public static  WebElement waitForClickableElement(WebDriver driver, By locator, Duration timeoutInSeconds) {
+//		WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+//		return wait.until(ExpectedConditions.elementToBeClickable(locator));
+//
+//	}	
+	
+	public static  WebElement waitForClickableElement(WebDriver driver, WebElement element, Duration timeoutInSeconds) {
 		WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
-		return wait.until(ExpectedConditions.elementToBeClickable(locator));
+		return wait.until(ExpectedConditions.elementToBeClickable(element));
 
 	}	
 

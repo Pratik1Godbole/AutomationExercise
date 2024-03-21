@@ -1,6 +1,9 @@
 package com.automationexercise.Pages;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -63,28 +66,58 @@ public class CheckOutPage extends BaseClass{
 		cart.EnterCommentTextAndClickPlaceOrder();
 		utils.payment(driver);
 		driver.navigate().forward();
+		
 
 
-		try {
-			Thread.sleep(2000); 
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		
+//		downloadInvoice.click();
+		utils.waitForClickableElement(driver, downloadInvoice, Duration.ofSeconds(20)).click();
+		
+		
+//		try {
+//			Thread.sleep(2000); 
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 
 		// Specify the path to the downloaded invoice file
 		String filePath = "C:\\Users\\prati\\Downloads\\invoice.txt"; 
+		BufferedReader br = null;
+		
+		
+		 try {
+	            br = new BufferedReader(new FileReader(filePath));
+	            String line;
+	            while ((line = br.readLine()) != null) {
+	                System.out.println(line);
+	            }
+	        } catch (IOException e) {
+	            System.err.println("Error reading the file: " + e.getMessage());
+	        } finally {
+	            try {
+	                if (br != null) {
+	                    br.close();
+	                }
+	            } catch (IOException e) {
+	                System.err.println("Error closing the BufferedReader: " + e.getMessage());
+	            }
+	        }
+		
+		
 
-		// Create a File object with the specified file path
-		File file = new File(filePath);
+//		// Create a File object with the specified file path
+//		File file = new File(filePath);
+//		
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+//
+//		// Check if the file exists
+//		if (file.exists()) {
+//			System.out.println("Invoice downloaded successfully at: " + filePath);
+//		} else {
+//			System.out.println("Invoice download failed.");
+//		}
 
-		// Check if the file exists
-		if (file.exists()) {
-			System.out.println("Invoice downloaded successfully at: " + filePath);
-		} else {
-			System.out.println("Invoice download failed.");
-		}
-
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
 		
 		signup.deleteAcc();
